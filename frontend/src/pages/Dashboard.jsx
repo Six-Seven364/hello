@@ -664,7 +664,7 @@ export default function Dashboard({ user, onLogout }) {
             <div className="flex flex-col items-center p-4">
               <div className="bg-white p-4 mb-4">
                 <QRCodeSVG
-                  value={`otpauth://totp/${encodeURIComponent(selectedAccount.issuer)}:${encodeURIComponent(selectedAccount.name)}?secret=${selectedAccount.secret || "PLACEHOLDER"}&issuer=${encodeURIComponent(selectedAccount.issuer)}`}
+                  value={`otpauth://totp/${encodeURIComponent(selectedAccount.issuer)}:${encodeURIComponent(selectedAccount.name)}?secret=${selectedAccount.secret}&issuer=${encodeURIComponent(selectedAccount.issuer)}`}
                   size={200}
                   level="H"
                 />
@@ -672,8 +672,11 @@ export default function Dashboard({ user, onLogout }) {
               <p className="text-gray-400 font-mono text-sm text-center">
                 {selectedAccount.issuer} - {selectedAccount.name}
               </p>
+              <p className="text-cyan-400 text-xs font-mono mt-2 text-center break-all">
+                Secret: {selectedAccount.secret}
+              </p>
               <p className="text-gray-600 text-xs font-mono mt-2 text-center">
-                Scan this QR code to transfer the account
+                Scan this QR code with any authenticator app
               </p>
             </div>
           )}
