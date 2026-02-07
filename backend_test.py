@@ -422,7 +422,7 @@ class GridLockAPITester:
     def test_invalid_credentials(self):
         """Test invalid login credentials"""
         invalid_data = {
-            "email": "nonexistent@test.com",
+            "email": "nonexistent@example.com",
             "password": "wrongpassword"
         }
         
