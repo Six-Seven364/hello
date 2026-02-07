@@ -1,152 +1,152 @@
 {
   "total_tests": 24,
-  "passed_tests": 23,
-  "failed_tests": 1,
-  "success_rate": 95.83333333333334,
+  "passed_tests": 24,
+  "failed_tests": 0,
+  "success_rate": 100.0,
   "test_details": [
     {
       "test": "Root API Endpoint",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:05.009188"
+      "timestamp": "2026-02-07T16:04:22.252394"
     },
     {
       "test": "User Registration",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:05.391106"
+      "timestamp": "2026-02-07T16:04:22.617587"
     },
     {
       "test": "User Login",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:05.751762"
+      "timestamp": "2026-02-07T16:04:22.976560"
     },
     {
       "test": "Get User Profile",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:05.892837"
+      "timestamp": "2026-02-07T16:04:23.117356"
     },
     {
       "test": "Setup 4-Digit PIN",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:06.265526"
+      "timestamp": "2026-02-07T16:04:23.483061"
     },
     {
       "test": "Lock Code Verification",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:06.627345"
+      "timestamp": "2026-02-07T16:04:23.841877"
     },
     {
       "test": "Setup 6-Digit PIN",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:06.984034"
+      "timestamp": "2026-02-07T16:04:24.208417"
     },
     {
       "test": "Setup Password Lock",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:07.351155"
+      "timestamp": "2026-02-07T16:04:24.568493"
     },
     {
       "test": "Create TOTP Account",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:07.501270"
+      "timestamp": "2026-02-07T16:04:24.708345"
     },
     {
       "test": "Get TOTP Accounts",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:07.640073"
+      "timestamp": "2026-02-07T16:04:24.847066"
     },
     {
       "test": "Get Single TOTP Account",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:07.780838"
+      "timestamp": "2026-02-07T16:04:24.986199"
     },
     {
       "test": "Update TOTP Account",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:07.926206"
+      "timestamp": "2026-02-07T16:04:25.121680"
     },
     {
       "test": "TOTP QR Generation",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:08.095252"
+      "timestamp": "2026-02-07T16:04:25.269497"
     },
     {
       "test": "Parse TOTP QR URI",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:08.235453"
+      "timestamp": "2026-02-07T16:04:25.410628"
     },
     {
       "test": "Create Password Entry",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:08.385314"
+      "timestamp": "2026-02-07T16:04:25.552061"
     },
     {
       "test": "Get Password Entries",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:08.523186"
+      "timestamp": "2026-02-07T16:04:25.688003"
     },
     {
       "test": "Get Single Password Entry",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:08.660562"
+      "timestamp": "2026-02-07T16:04:25.825407"
     },
     {
       "test": "Update Password Entry",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:08.804154"
+      "timestamp": "2026-02-07T16:04:25.962709"
     },
     {
       "test": "Export All Data",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:08.942683"
+      "timestamp": "2026-02-07T16:04:26.101762"
     },
     {
       "test": "Export Data Structure",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:08.943349"
+      "timestamp": "2026-02-07T16:04:26.102405"
     },
     {
       "test": "Delete Password Entry",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:09.083423"
+      "timestamp": "2026-02-07T16:04:26.242394"
     },
     {
       "test": "Delete TOTP Account",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:09.226281"
+      "timestamp": "2026-02-07T16:04:26.385611"
     },
     {
       "test": "Invalid Login Credentials",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:04:09.365708"
+      "timestamp": "2026-02-07T16:04:26.524475"
     },
     {
       "test": "Unauthorized Access",
-      "success": false,
-      "details": "Expected 401, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:04:09.500391"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:26.666461"
     }
   ]
 }
