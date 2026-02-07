@@ -1,0 +1,101 @@
+{
+  "identity": {
+    "name": "GridLock",
+    "tagline": "Secure Your Digital Soul",
+    "tone": "Aggressive, Secure, High-Tech, Mysterious",
+    "archetype": "Electric & Neon"
+  },
+  "typography": {
+    "primary_font": "Orbitron",
+    "secondary_font": "JetBrains Mono",
+    "h1": "text-5xl md:text-7xl font-black tracking-tighter uppercase font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600",
+    "h2": "text-3xl md:text-4xl font-bold tracking-tight font-orbitron text-white",
+    "h3": "text-xl md:text-2xl font-bold tracking-wide font-orbitron text-cyan-400",
+    "body": "text-base font-mono text-gray-400 leading-relaxed",
+    "caption": "text-xs font-mono text-gray-600 uppercase tracking-widest",
+    "code": "font-mono text-sm bg-black/50 p-1 text-green-400"
+  },
+  "colors": {
+    "background": "#050505",
+    "surface": "#0A0A0A",
+    "surface_highlight": "#111111",
+    "primary": "#00F0FF",
+    "primary_foreground": "#000000",
+    "secondary": "#FF003C",
+    "secondary_foreground": "#FFFFFF",
+    "accent": "#FCEE0A",
+    "accent_foreground": "#000000",
+    "border": "#333333",
+    "border_active": "#00F0FF",
+    "text_primary": "#E0E0E0",
+    "text_secondary": "#9CA3AF",
+    "success": "#00FF9D",
+    "warning": "#FCEE0A",
+    "error": "#FF003C"
+  },
+  "visual_enhancers": {
+    "borders": "border border-white/10 hover:border-cyan-500/50 transition-colors duration-300",
+    "shadows": "shadow-[0_0_20px_rgba(0,240,255,0.1)] hover:shadow-[0_0_30px_rgba(0,240,255,0.2)]",
+    "glass": "bg-black/60 backdrop-blur-xl border border-white/10",
+    "neon_glow": "drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]",
+    "scanlines": "bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] pointer-events-none fixed inset-0 z-50 opacity-20",
+    "glitch_hover": "hover:animate-pulse hover:text-cyan-400 cursor-pointer"
+  },
+  "components": {
+    "Button": {
+      "default": "bg-cyan-500 text-black font-bold uppercase tracking-widest hover:bg-cyan-400 hover:shadow-[0_0_20px_rgba(0,240,255,0.5)] transition-all duration-200 rounded-none clip-path-polygon-[0_0,100%_0,100%_70%,90%_100%,0_100%]",
+      "outline": "bg-transparent border border-cyan-500 text-cyan-500 hover:bg-cyan-500/10 rounded-none uppercase tracking-widest",
+      "ghost": "hover:bg-white/5 text-gray-400 hover:text-white rounded-none"
+    },
+    "Card": {
+      "base": "bg-black/40 border border-white/10 p-6 rounded-none relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-300",
+      "header": "flex flex-col space-y-1.5 p-6",
+      "content": "p-6 pt-0",
+      "footer": "flex items-center p-6 pt-0"
+    },
+    "Input": {
+      "base": "flex h-12 w-full bg-black/50 border-b-2 border-white/20 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-cyan-500 disabled:cursor-not-allowed disabled:opacity-50 rounded-none transition-colors font-mono"
+    },
+    "Badge": {
+      "base": "inline-flex items-center border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-cyan-500/10 text-cyan-500 hover:bg-cyan-500/20 rounded-none uppercase tracking-widest"
+    }
+  },
+  "layout_strategies": {
+    "auth_page": {
+      "structure": "grid grid-cols-1 lg:grid-cols-2 h-screen w-full overflow-hidden",
+      "left_panel": "relative hidden lg:flex flex-col justify-center items-center bg-black p-10 border-r border-white/10",
+      "right_panel": "flex flex-col justify-center items-center bg-black/95 p-8 relative z-10"
+    },
+    "dashboard": {
+      "grid": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6 md:p-10 max-w-7xl mx-auto",
+      "totp_card": "col-span-1 row-span-1 bg-black/40 border border-white/10 p-6 flex flex-col justify-between hover:border-cyan-500/50 transition-colors group relative overflow-hidden",
+      "vault_item": "col-span-1 bg-black/40 border border-white/10 p-4 flex items-center justify-between hover:bg-white/5 transition-colors cursor-pointer"
+    }
+  },
+  "image_urls": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1767481626894-bab78ae919be?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwzfHxjeWJlcnB1bmslMjBhYnN0cmFjdCUyMGRpZ2l0YWwlMjBncmlkJTIwbmVvbiUyMGRhcmt8ZW58MHx8fHwxNzcwNDc5NzMxfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract purple neon grid for auth page background or hero section",
+      "category": "background"
+    }
+  },
+  "instructions_to_main_agent": {
+    "general": "You are building 'GridLock', a cyberpunk authenticator. The vibe is 'High-Tech Security'. Use sharp edges, neon colors, and terminal-like fonts. Avoid rounded corners.",
+    "theme_setup": "Force dark mode. The app should not have a light mode. Set 'dark' class on the html element by default.",
+    "font_setup": "Import 'Orbitron' and 'JetBrains Mono' from Google Fonts in index.css.",
+    "component_customization": "Go into /components/ui and STRIP all 'rounded-md', 'rounded-lg', 'rounded-xl' classes. Replace with 'rounded-none'. Add 'border-white/10' to cards.",
+    "animations": "Use 'framer-motion' for the TOTP countdown timer (circular progress). Use 'sonner' for toasts.",
+    "totp_logic": "The TOTP codes should look like '123 456' with a monospace font. The countdown should be a progress bar or ring that changes color from Cyan -> Yellow -> Red as it expires.",
+    "qr_scanner": "Use 'react-qr-reader' or similar. Overlay a 'scanning grid' visual on top of the camera feed.",
+    "testing": "Add data-testid to ALL interactive elements (buttons, inputs, cards). Format: 'page-section-element-action'."
+  },
+  "universal_guidelines": [
+    "Do not use generic gradients. Use solid blacks and neon borders.",
+    "Do not center align text unless it is a massive headline.",
+    "Use 2-3x more padding than usual. 'p-8' is the new 'p-4'.",
+    "Never use 'Inter' font. Use 'Orbitron' for headers, 'JetBrains Mono' for body.",
+    "All toasts must use the 'sonner' library.",
+    "Ensure all text has sufficient contrast (APCA/WCAG AA).",
+    "Use 'lucide-react' for icons."
+  ]
+}
