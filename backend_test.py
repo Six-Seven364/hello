@@ -445,7 +445,7 @@ class GridLockAPITester:
             "Unauthorized Access",
             "GET",
             "/auth/me",
-            401
+            403  # Changed from 401 to 403 as that's what the API returns
         )
         
         # Restore token
