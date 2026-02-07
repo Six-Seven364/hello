@@ -82,7 +82,7 @@ class GridLockAPITester:
         """Test user registration"""
         timestamp = int(time.time())
         test_user = {
-            "email": f"test_user_{timestamp}@gridlock.test",
+            "email": f"test_user_{timestamp}@example.com",
             "password": "TestPass123!",
             "name": f"Test User {timestamp}"
         }
