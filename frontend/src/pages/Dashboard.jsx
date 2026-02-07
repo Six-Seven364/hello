@@ -554,26 +554,27 @@ export default function Dashboard({ user, onLogout }) {
               </div>
               <div>
                 <Label className="text-gray-400 text-xs uppercase tracking-widest font-mono">
-                  Issuer
+                  Secret Key (Required)
+                </Label>
+                <Input
+                  data-testid="add-totp-secret"
+                  value={totpForm.secret}
+                  onChange={(e) => setTotpForm({ ...totpForm, secret: e.target.value.toUpperCase().replace(/[^A-Z2-7]/g, '') })}
+                  placeholder="JBSWY3DPEHPK3PXP"
+                  className="bg-black/50 border-white/20 focus:border-cyan-400 rounded-none font-mono mt-1 uppercase"
+                  required
+                />
+                <p className="text-gray-600 text-xs font-mono mt-1">Base32 secret from your service</p>
+              </div>
+              <div>
+                <Label className="text-gray-400 text-xs uppercase tracking-widest font-mono">
+                  Issuer (Optional)
                 </Label>
                 <Input
                   data-testid="add-totp-issuer"
                   value={totpForm.issuer}
                   onChange={(e) => setTotpForm({ ...totpForm, issuer: e.target.value })}
                   placeholder="Google, GitHub, etc."
-                  className="bg-black/50 border-white/20 focus:border-cyan-400 rounded-none font-mono mt-1"
-                  required
-                />
-              </div>
-              <div>
-                <Label className="text-gray-400 text-xs uppercase tracking-widest font-mono">
-                  Secret Key (Optional)
-                </Label>
-                <Input
-                  data-testid="add-totp-secret"
-                  value={totpForm.secret}
-                  onChange={(e) => setTotpForm({ ...totpForm, secret: e.target.value })}
-                  placeholder="Leave empty to auto-generate"
                   className="bg-black/50 border-white/20 focus:border-cyan-400 rounded-none font-mono mt-1"
                 />
               </div>

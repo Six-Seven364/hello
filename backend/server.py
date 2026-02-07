@@ -70,8 +70,8 @@ class LockCodeVerify(BaseModel):
 
 class TOTPAccountCreate(BaseModel):
     name: str
-    issuer: str
-    secret: Optional[str] = None
+    secret: str
+    issuer: Optional[str] = None
 
 class TOTPAccountUpdate(BaseModel):
     name: Optional[str] = None
@@ -238,27 +238,36 @@ async def verify_lock_code(data: LockCodeVerify, user: dict = Depends(get_curren
 
 @api_router.post("/totp/accounts")
 async def create_totp_account(data: TOTPAccountCreate, user: dict = Depends(get_current_user)):
-    secret = data.secret if data.secret else pyotp.random_base32()
+    # Validate the secret is valid base32
+    secret = data.secret.upper().replace(" ", "")
+    try:
+        # Test if secret is valid by creating TOTP
+        totp = pyotp.TOTP(secret)
+        _ = totp.now()
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Invalid secret key. Must be a valid Base32 string.")
+    
     account_id = str(uuid.uuid4())
+    issuer = data.issuer if data.issuer else data.name.split("@")[0] if "@" in data.name else "GridLock"
     
     account = {
         "id": account_id,
         "user_id": user["id"],
         "name": data.name,
-        "issuer": data.issuer,
+        "issuer": issuer,
         "secret": secret,
         "created_at": datetime.now(timezone.utc).isoformat()
     }
     
     await db.totp_accounts.insert_one(account)
     
-    totp = pyotp.TOTP(secret)
     time_remaining = 30 - (int(datetime.now(timezone.utc).timestamp()) % 30)
     
     return {
         "id": account_id,
         "name": data.name,
-        "issuer": data.issuer,
+        "issuer": issuer,
+        "secret": secret,
         "current_code": totp.now(),
         "next_code": totp.at(datetime.now(timezone.utc) + timedelta(seconds=30)),
         "time_remaining": time_remaining,

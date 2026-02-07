@@ -170,7 +170,7 @@ export default function AuthPage({ onLogin }) {
                   <Input
                     data-testid="auth-input-email"
                     type="email"
-                    placeholder="user@gridlock.io"
+                    placeholder="user@example.com"
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
