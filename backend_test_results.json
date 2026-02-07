@@ -1,146 +1,152 @@
 {
-  "total_tests": 23,
-  "passed_tests": 2,
-  "failed_tests": 21,
-  "success_rate": 8.695652173913043,
+  "total_tests": 24,
+  "passed_tests": 23,
+  "failed_tests": 1,
+  "success_rate": 95.83333333333334,
   "test_details": [
     {
       "test": "Root API Endpoint",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:03:45.725755"
+      "timestamp": "2026-02-07T16:04:05.009188"
     },
     {
       "test": "User Registration",
-      "success": false,
-      "details": "Expected 200, got 422: {\"detail\":[{\"type\":\"value_error\",\"loc\":[\"body\",\"email\"],\"msg\":\"value is not a valid email address: The part after the @-sign is a special-use or reserved name that cannot be used with email.\",\"input\":\"test_user_1770480225@gridlock.test\",\"ctx\":{\"reason\":\"The part after the @-sign is a special-use or reserved name that cannot be used with email.\"}}]}",
-      "timestamp": "2026-02-07T16:03:45.869844"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:05.391106"
     },
     {
       "test": "User Login",
-      "success": false,
-      "details": "No test user available",
-      "timestamp": "2026-02-07T16:03:45.970523"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:05.751762"
     },
     {
       "test": "Get User Profile",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:46.110372"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:05.892837"
     },
     {
       "test": "Setup 4-Digit PIN",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:46.246032"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:06.265526"
     },
     {
       "test": "Lock Code Verification",
-      "success": false,
-      "details": "No lock code set",
-      "timestamp": "2026-02-07T16:03:46.346715"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:06.627345"
     },
     {
       "test": "Setup 6-Digit PIN",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:46.483598"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:06.984034"
     },
     {
       "test": "Setup Password Lock",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:46.621665"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:07.351155"
     },
     {
       "test": "Create TOTP Account",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:46.762758"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:07.501270"
     },
     {
       "test": "Get TOTP Accounts",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:46.904259"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:07.640073"
     },
     {
       "test": "Get Single TOTP Account",
-      "success": false,
-      "details": "No TOTP account created",
-      "timestamp": "2026-02-07T16:03:47.004956"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:07.780838"
     },
     {
       "test": "Update TOTP Account",
-      "success": false,
-      "details": "No TOTP account created",
-      "timestamp": "2026-02-07T16:03:47.105068"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:07.926206"
     },
     {
       "test": "TOTP QR Generation",
-      "success": false,
-      "details": "No TOTP account created",
-      "timestamp": "2026-02-07T16:03:47.205167"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:08.095252"
     },
     {
       "test": "Parse TOTP QR URI",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:47.343645"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:08.235453"
     },
     {
       "test": "Create Password Entry",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:47.484309"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:08.385314"
     },
     {
       "test": "Get Password Entries",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:47.619822"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:08.523186"
     },
     {
       "test": "Get Single Password Entry",
-      "success": false,
-      "details": "No password entry created",
-      "timestamp": "2026-02-07T16:03:47.720517"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:08.660562"
     },
     {
       "test": "Update Password Entry",
-      "success": false,
-      "details": "No password entry created",
-      "timestamp": "2026-02-07T16:03:47.820628"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:08.804154"
     },
     {
       "test": "Export All Data",
-      "success": false,
-      "details": "Expected 200, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:47.956073"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:08.942683"
+    },
+    {
+      "test": "Export Data Structure",
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:08.943349"
     },
     {
       "test": "Delete Password Entry",
-      "success": false,
-      "details": "No password entry created",
-      "timestamp": "2026-02-07T16:03:48.056774"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:09.083423"
     },
     {
       "test": "Delete TOTP Account",
-      "success": false,
-      "details": "No TOTP account created",
-      "timestamp": "2026-02-07T16:03:48.156914"
+      "success": true,
+      "details": "",
+      "timestamp": "2026-02-07T16:04:09.226281"
     },
     {
       "test": "Invalid Login Credentials",
       "success": true,
       "details": "",
-      "timestamp": "2026-02-07T16:03:48.298633"
+      "timestamp": "2026-02-07T16:04:09.365708"
     },
     {
       "test": "Unauthorized Access",
       "success": false,
       "details": "Expected 401, got 403: {\"detail\":\"Not authenticated\"}",
-      "timestamp": "2026-02-07T16:03:48.438922"
+      "timestamp": "2026-02-07T16:04:09.500391"
     }
   ]
 }
