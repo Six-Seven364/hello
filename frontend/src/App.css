@@ -1,34 +1,161 @@
-.App-logo {
-    height: 40vmin;
+/* GridLock App Styles */
+
+.App {
+    min-height: 100vh;
+    background-color: #050505;
+}
+
+/* Totp Code Animation */
+@keyframes code-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.code-pulse {
+    animation: code-pulse 1s ease-in-out infinite;
+}
+
+/* Scan animation */
+@keyframes scan {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.animate-scan {
+    animation: scan 2s ease-in-out infinite;
+}
+
+/* Glitch effect */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+.glitch-hover:hover {
+    animation: glitch 0.3s ease-in-out;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00F0FF;
+}
+
+/* QR Scanner overlay styles */
+.qr-scanner-overlay {
+    position: absolute;
+    inset: 0;
     pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
+.qr-scanner-corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: #00F0FF;
+}
+
+.qr-scanner-corner-tl {
+    top: 0;
+    left: 0;
+    border-top: 3px solid;
+    border-left: 3px solid;
+}
+
+.qr-scanner-corner-tr {
+    top: 0;
+    right: 0;
+    border-top: 3px solid;
+    border-right: 3px solid;
+}
+
+.qr-scanner-corner-bl {
+    bottom: 0;
+    left: 0;
+    border-bottom: 3px solid;
+    border-left: 3px solid;
+}
+
+.qr-scanner-corner-br {
+    bottom: 0;
+    right: 0;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
+}
+
+/* Progress ring for TOTP */
+.progress-ring-circle {
+    transition: stroke-dashoffset 0.1s linear;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+/* Neon border animation */
+@keyframes neon-border {
+    0%, 100% {
+        border-color: rgba(0, 240, 255, 0.3);
+        box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+    }
+    50% {
+        border-color: rgba(0, 240, 255, 0.6);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
     }
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
+.neon-border-animated {
+    animation: neon-border 2s ease-in-out infinite;
+}
+
+/* Clip path for buttons */
+.clip-corner {
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
+}
+
+/* Focus ring styles */
+*:focus-visible {
+    outline: 2px solid #00F0FF;
+    outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+    background: rgba(0, 240, 255, 0.3);
     color: white;
-}
-
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }
