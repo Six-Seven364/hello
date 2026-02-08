@@ -84,6 +84,28 @@ export default function LockScreen({ user, onUnlock }) {
     }
   };
 
+  const handleForgotPinSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(false);
+
+    try {
+      const token = localStorage.getItem("gridlock_token");
+      await axios.post(
+        `${API}/lock/verify-password`,
+        { email: user.email, password: password },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success("Password Verified - Access Granted");
+      onUnlock();
+    } catch (err) {
+      setError(true);
+      toast.error("Invalid Password");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center p-8 relative overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-20" />
