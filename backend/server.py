@@ -236,6 +236,17 @@ async def verify_lock_code(data: LockCodeVerify, user: dict = Depends(get_curren
     
     return {"verified": True, "lock_type": user["lock_type"]}
 
+@api_router.post("/lock/verify-password")
+async def verify_password_unlock(data: UserLogin, user: dict = Depends(get_current_user)):
+    """Verify password to bypass lock code"""
+    if data.email != user["email"]:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    if not bcrypt.checkpw(data.password.encode(), user["password"].encode()):
+        raise HTTPException(status_code=401, detail="Invalid password")
+    
+    return {"verified": True, "message": "Password verified, access granted"}
+
 @api_router.post("/totp/accounts")
 async def create_totp_account(data: TOTPAccountCreate, user: dict = Depends(get_current_user)):
     # Validate the secret is valid base32
