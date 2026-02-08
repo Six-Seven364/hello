@@ -107,14 +107,58 @@ export default function LockScreen({ user, onUnlock, onLogout }) {
         { email: user.email, password: password },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      toast.success("Password Verified - Access Granted");
-      onUnlock();
+      toast.success("Password Verified");
+      setShowForgotPin(false);
+      setShowResetPin(true);
     } catch (err) {
       setError(true);
       toast.error("Invalid Password");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleResetPin = async (e) => {
+    e.preventDefault();
+    
+    if (newLockCode !== confirmLockCode) {
+      toast.error("Codes do not match");
+      return;
+    }
+
+    if (newLockType === "pin4" && (newLockCode.length !== 4 || !/^\d+$/.test(newLockCode))) {
+      toast.error("PIN must be exactly 4 digits");
+      return;
+    }
+    if (newLockType === "pin6" && (newLockCode.length !== 6 || !/^\d+$/.test(newLockCode))) {
+      toast.error("PIN must be exactly 6 digits");
+      return;
+    }
+    if (newLockType === "password" && newLockCode.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const token = localStorage.getItem("gridlock_token");
+      await axios.post(
+        `${API}/lock/setup`,
+        { lock_type: newLockType, lock_code: newLockCode },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success("Lock code updated successfully");
+      onUnlock();
+    } catch (err) {
+      toast.error("Failed to update lock code");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSkipReset = () => {
+    toast.success("Access Granted");
+    onUnlock();
   };
 
   return (
