@@ -1,21 +1,32 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Shield, Lock, AlertTriangle, KeyRound, ArrowLeft } from "lucide-react";
+import { Shield, Lock, AlertTriangle, KeyRound, ArrowLeft, LogOut, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "sonner";
 import axios from "axios";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
-export default function LockScreen({ user, onUnlock }) {
+export default function LockScreen({ user, onUnlock, onLogout }) {
   const [lockCode, setLockCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [attempts, setAttempts] = useState(0);
   const [showForgotPin, setShowForgotPin] = useState(false);
   const [password, setPassword] = useState("");
+  const [showResetPin, setShowResetPin] = useState(false);
+  const [newLockType, setNewLockType] = useState("pin4");
+  const [newLockCode, setNewLockCode] = useState("");
+  const [confirmLockCode, setConfirmLockCode] = useState("");
   const inputRefs = useRef([]);
 
   const isPinMode = user?.lock_type === "pin4" || user?.lock_type === "pin6";
