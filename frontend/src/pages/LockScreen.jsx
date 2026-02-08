@@ -310,16 +310,27 @@ export default function LockScreen({ user, onUnlock, onLogout }) {
           Locked by {user?.name}
         </p>
 
-        {!showForgotPin && (
+        <div className="flex flex-col gap-2 mt-4">
+          {!showForgotPin && (
+            <button
+              data-testid="lock-forgot-pin-btn"
+              onClick={() => setShowForgotPin(true)}
+              className="w-full text-center text-cyan-400 text-xs font-mono uppercase tracking-widest hover:text-cyan-300 transition-colors"
+            >
+              <KeyRound className="w-3 h-3 inline mr-2" />
+              Forgot PIN? Use Password
+            </button>
+          )}
+          
           <button
-            data-testid="lock-forgot-pin-btn"
-            onClick={() => setShowForgotPin(true)}
-            className="mt-4 w-full text-center text-cyan-400 text-xs font-mono uppercase tracking-widest hover:text-cyan-300 transition-colors"
+            data-testid="lock-logout-btn"
+            onClick={onLogout}
+            className="w-full text-center text-gray-500 text-xs font-mono uppercase tracking-widest hover:text-red-400 transition-colors"
           >
-            <KeyRound className="w-3 h-3 inline mr-2" />
-            Forgot PIN? Use Password
+            <LogOut className="w-3 h-3 inline mr-2" />
+            Sign Out
           </button>
-        )}
+        </div>
       </motion.div>
 
       {/* Forgot PIN Modal */}
@@ -386,13 +397,111 @@ export default function LockScreen({ user, onUnlock, onLogout }) {
                 disabled={loading || password.length < 6}
                 className="w-full h-12 bg-cyan-500 text-black font-orbitron font-bold uppercase tracking-widest hover:bg-cyan-400 hover:shadow-neon-strong transition-all duration-200 rounded-none clip-corner"
               >
-                {loading ? "Verifying..." : "Unlock with Password"}
+                {loading ? "Verifying..." : "Verify Password"}
               </Button>
             </form>
 
             <p className="text-center text-gray-600 text-xs font-mono mt-6">
               This will bypass your {user?.lock_type?.toUpperCase()} lock
             </p>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Reset PIN Modal */}
+      {showResetPin && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="glass-effect p-8 max-w-md w-full"
+          >
+            <div className="text-center mb-6">
+              <Shield className="w-12 h-12 text-cyan-400 mx-auto mb-4 neon-glow" />
+              <h2 className="font-orbitron text-xl text-white mb-2">Reset Your Lock</h2>
+              <p className="text-gray-500 font-mono text-sm">
+                Set a new PIN or password, or skip to continue
+              </p>
+            </div>
+
+            <form onSubmit={handleResetPin} className="space-y-4">
+              <div>
+                <Label className="text-gray-400 text-xs uppercase tracking-widest font-mono mb-2 block">
+                  Lock Type
+                </Label>
+                <Select value={newLockType} onValueChange={setNewLockType}>
+                  <SelectTrigger
+                    data-testid="reset-lock-type-select"
+                    className="bg-black/50 border-white/20 rounded-none font-mono"
+                  >
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0A0A0A] border-white/10 rounded-none">
+                    <SelectItem value="pin4" className="font-mono">4-Digit PIN</SelectItem>
+                    <SelectItem value="pin6" className="font-mono">6-Digit PIN</SelectItem>
+                    <SelectItem value="password" className="font-mono">Password</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label className="text-gray-400 text-xs uppercase tracking-widest font-mono mb-2 block">
+                  New {newLockType === "password" ? "Password" : "PIN"}
+                </Label>
+                <Input
+                  data-testid="reset-new-code-input"
+                  type="password"
+                  value={newLockCode}
+                  onChange={(e) => setNewLockCode(e.target.value)}
+                  placeholder={newLockType === "pin4" ? "••••" : newLockType === "pin6" ? "••••••" : "Enter password"}
+                  maxLength={newLockType === "pin4" ? 4 : newLockType === "pin6" ? 6 : undefined}
+                  inputMode={newLockType !== "password" ? "numeric" : undefined}
+                  className="bg-black/50 border-white/20 focus:border-cyan-400 rounded-none font-mono"
+                  required
+                />
+              </div>
+
+              <div>
+                <Label className="text-gray-400 text-xs uppercase tracking-widest font-mono mb-2 block">
+                  Confirm {newLockType === "password" ? "Password" : "PIN"}
+                </Label>
+                <Input
+                  data-testid="reset-confirm-code-input"
+                  type="password"
+                  value={confirmLockCode}
+                  onChange={(e) => setConfirmLockCode(e.target.value)}
+                  placeholder="Confirm"
+                  maxLength={newLockType === "pin4" ? 4 : newLockType === "pin6" ? 6 : undefined}
+                  inputMode={newLockType !== "password" ? "numeric" : undefined}
+                  className="bg-black/50 border-white/20 focus:border-cyan-400 rounded-none font-mono"
+                  required
+                />
+              </div>
+
+              <div className="flex gap-3">
+                <Button
+                  data-testid="reset-skip-btn"
+                  type="button"
+                  onClick={handleSkipReset}
+                  variant="outline"
+                  className="flex-1 h-12 border-gray-600 text-gray-400 hover:bg-white/5 rounded-none font-orbitron uppercase tracking-widest text-xs"
+                >
+                  Skip
+                </Button>
+                <Button
+                  data-testid="reset-submit-btn"
+                  type="submit"
+                  disabled={loading}
+                  className="flex-1 h-12 bg-cyan-500 text-black font-orbitron font-bold uppercase tracking-widest hover:bg-cyan-400 rounded-none clip-corner text-xs"
+                >
+                  {loading ? "Saving..." : "Set New Lock"}
+                </Button>
+              </div>
+            </form>
           </motion.div>
         </motion.div>
       )}
