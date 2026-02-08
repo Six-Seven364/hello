@@ -80,7 +80,7 @@ function App() {
               !isAuthenticated ? (
                 <AuthPage onLogin={handleLogin} />
               ) : !isUnlocked && user?.has_lock_code ? (
-                <LockScreen user={user} onUnlock={handleUnlock} />
+                <LockScreen user={user} onUnlock={handleUnlock} onLogout={handleLogout} />
               ) : (
                 <Navigate to="/dashboard" replace />
               )
