@@ -174,11 +174,30 @@ function PasswordCard({ entry, onDelete, onView }) {
   const [showPassword, setShowPassword] = useState(false);
   const [copied, setCopied] = useState(null);
 
-  const copyToClipboard = (text, type) => {
-    navigator.clipboard.writeText(text);
-    setCopied(type);
-    toast.success(`${type} copied`);
-    setTimeout(() => setCopied(null), 2000);
+  const copyToClipboard = async (text, type) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(type);
+      toast.success(`${type} copied to clipboard`);
+      setTimeout(() => setCopied(null), 2000);
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        setCopied(type);
+        toast.success(`${type} copied to clipboard`);
+        setTimeout(() => setCopied(null), 2000);
+      } catch (e) {
+        toast.error("Failed to copy");
+      }
+      document.body.removeChild(textArea);
+    }
   };
 
   return (
