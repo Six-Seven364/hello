@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Shield, Lock, AlertTriangle } from "lucide-react";
+import { Shield, Lock, AlertTriangle, KeyRound, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import axios from "axios";
 
@@ -13,6 +14,8 @@ export default function LockScreen({ user, onUnlock }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [attempts, setAttempts] = useState(0);
+  const [showForgotPin, setShowForgotPin] = useState(false);
+  const [password, setPassword] = useState("");
   const inputRefs = useRef([]);
 
   const isPinMode = user?.lock_type === "pin4" || user?.lock_type === "pin6";
