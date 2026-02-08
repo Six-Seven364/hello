@@ -254,7 +254,93 @@ export default function LockScreen({ user, onUnlock }) {
         <p className="text-center text-gray-600 text-xs font-mono mt-8 uppercase tracking-widest">
           Locked by {user?.name}
         </p>
+
+        {!showForgotPin && (
+          <button
+            data-testid="lock-forgot-pin-btn"
+            onClick={() => setShowForgotPin(true)}
+            className="mt-4 w-full text-center text-cyan-400 text-xs font-mono uppercase tracking-widest hover:text-cyan-300 transition-colors"
+          >
+            <KeyRound className="w-3 h-3 inline mr-2" />
+            Forgot PIN? Use Password
+          </button>
+        )}
       </motion.div>
+
+      {/* Forgot PIN Modal */}
+      {showForgotPin && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="glass-effect p-8 max-w-md w-full"
+          >
+            <button
+              data-testid="lock-forgot-back-btn"
+              onClick={() => {
+                setShowForgotPin(false);
+                setPassword("");
+                setError(false);
+              }}
+              className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 mb-6 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span className="font-mono text-xs uppercase">Back to PIN</span>
+            </button>
+
+            <div className="text-center mb-6">
+              <KeyRound className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+              <h2 className="font-orbitron text-xl text-white mb-2">Forgot PIN?</h2>
+              <p className="text-gray-500 font-mono text-sm">
+                Enter your account password to unlock
+              </p>
+            </div>
+
+            <form onSubmit={handleForgotPinSubmit} className="space-y-4">
+              <div>
+                <Label className="text-gray-400 text-xs uppercase tracking-widest font-mono mb-2 block">
+                  Account Password
+                </Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <Input
+                    data-testid="lock-forgot-password-input"
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setError(false);
+                    }}
+                    className={`pl-11 bg-black/50 border-2 h-14 font-mono text-lg rounded-none ${
+                      error ? "border-red-500" : "border-white/20 focus:border-cyan-400"
+                    }`}
+                    disabled={loading}
+                    autoFocus
+                  />
+                </div>
+              </div>
+
+              <Button
+                data-testid="lock-forgot-submit-btn"
+                type="submit"
+                disabled={loading || password.length < 6}
+                className="w-full h-12 bg-cyan-500 text-black font-orbitron font-bold uppercase tracking-widest hover:bg-cyan-400 hover:shadow-neon-strong transition-all duration-200 rounded-none clip-corner"
+              >
+                {loading ? "Verifying..." : "Unlock with Password"}
+              </Button>
+            </form>
+
+            <p className="text-center text-gray-600 text-xs font-mono mt-6">
+              This will bypass your {user?.lock_type?.toUpperCase()} lock
+            </p>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 }
