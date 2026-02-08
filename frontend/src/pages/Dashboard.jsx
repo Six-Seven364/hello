@@ -67,11 +67,30 @@ function TOTPCard({ account, onDelete, onShowQR }) {
     return () => clearInterval(interval);
   }, [account.next_code]);
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(currentCode);
-    setCopied(true);
-    toast.success("Code copied");
-    setTimeout(() => setCopied(false), 2000);
+  const copyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(currentCode);
+      setCopied(true);
+      toast.success("Code copied to clipboard");
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement("textarea");
+      textArea.value = currentCode;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        setCopied(true);
+        toast.success("Code copied to clipboard");
+        setTimeout(() => setCopied(false), 2000);
+      } catch (e) {
+        toast.error("Failed to copy");
+      }
+      document.body.removeChild(textArea);
+    }
   };
 
   const progress = (timeRemaining / 30) * 100;
